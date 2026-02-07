@@ -12,7 +12,7 @@ Build and compare supervised ML models to classify transactions as:
 - **0** = Not Fraud  
 - **1** = Fraud
 
-The dataset is **highly imbalanced** (fraud is rare), so the primary focus is on **Recall**, **F1-score**, and **ROC–AUC**, not just overall accuracy. fileciteturn0file0L1-L16
+The dataset is **highly imbalanced** (fraud is rare), so the primary focus is on **Recall**, **F1-score**, and **ROC–AUC**, not just overall accuracy. 
 
 ---
 
@@ -27,12 +27,12 @@ The dataset is **highly imbalanced** (fraud is rare), so the primary focus is on
 ## Dataset overview
 
 - **Total features:** 12  
-- **Target:** `Fraudulent` (0/1) fileciteturn0file0L6-L10  
-- Missing values appear mostly in **categorical fields** fileciteturn0file0L10-L12  
+- **Target:** `Fraudulent` (0/1) 
+- Missing values appear mostly in **categorical fields** = 
 - Key behavioral signals highlighted during EDA:
   - `Hours_Since_Last_Transaction`
   - `Number_of_Transactions_Last_24H`
-  - `Device_Used` fileciteturn0file0L12-L16  
+  - `Device_Used` 
 
 ---
 
@@ -40,27 +40,27 @@ The dataset is **highly imbalanced** (fraud is rare), so the primary focus is on
 
 ### 1) Exploratory Data Analysis (EDA)
 We explored fraud behavior across:
-- **Transaction velocity** (e.g., spikes around ~6 transactions in last 24 hours) fileciteturn0file0L17-L33  
-- **Time-of-day patterns** (fraud blends into normal traffic) fileciteturn0file0L34-L51  
-- **Location patterns** (some cities show higher fraud rates) fileciteturn0file0L52-L75  
-- **Correlation** (low multicollinearity; features provide mostly independent signal) fileciteturn0file0L76-L90  
+- **Transaction velocity** (e.g., spikes around ~6 transactions in last 24 hours) 
+- **Time-of-day patterns** (fraud blends into normal traffic)  
+- **Location patterns** (some cities show higher fraud rates)  
+- **Correlation** (low multicollinearity; features provide mostly independent signal)   
 
 ### 2) Data cleaning & preprocessing
 - Checked missing values and datatypes
-- Standardized categorical formats fileciteturn0file0L91-L99  
-- One-hot encoded categorical variables (transaction type, device, payment method) fileciteturn0file0L99-L104  
+- Standardized categorical formats  
+- One-hot encoded categorical variables (transaction type, device, payment method)  
 - Engineered: **`Hours_Since_Last_Transaction`**
 - Used **train/test split**
-- Addressed class imbalance mainly with **probability threshold tuning** instead of oversampling fileciteturn0file0L99-L105  
+- Addressed class imbalance mainly with **probability threshold tuning** instead of oversampling 
 
 ### 3) Modeling
 Trained and evaluated:
 - Logistic Regression
 - Decision Tree
 - Random Forest
-- XGBoost fileciteturn0file0L106-L113  
+- XGBoost  
 
-We tuned the decision threshold (0.50 → **0.20**) to improve fraud capture (recall). fileciteturn0file0L106-L114
+We tuned the decision threshold (0.50 → **0.20**) to improve fraud capture (recall). 
 
 ---
 
@@ -73,7 +73,7 @@ Using the tuned threshold (**0.20**), the best-performing model was **XGBoost** 
 - **ROC–AUC:** N/A
 
 (Exact numbers may vary slightly with random seed/split.)  
-The presentation also identifies XGBoost as the best overall option for imbalanced fraud detection. fileciteturn0file0L120-L144
+The presentation also identifies XGBoost as the best overall option for imbalanced fraud detection. 
 
 ---
 
@@ -82,15 +82,15 @@ The presentation also identifies XGBoost as the best overall option for imbalanc
 Feature importance analysis (XGBoost) emphasized:
 - Risky **transaction types** (e.g., bank transfer / POS / online purchase)
 - **Device signals** (tablet/mobile/unknown)
-- **Behavioral timing** (hours since last transaction; transaction velocity) fileciteturn0file0L145-L170  
+- **Behavioral timing** (hours since last transaction; transaction velocity) 
 
 ---
 
 ## Challenges
 
-- **Severe class imbalance:** accuracy can look “okay” while missing fraud → prioritized recall + threshold tuning. fileciteturn0file0L10-L16  
-- **Missing categorical data:** required careful cleaning and encoding. fileciteturn0file0L10-L12  
-- **False positives vs false negatives tradeoff:** improved fraud capture by lowering the probability threshold to 0.20. fileciteturn0file0L106-L114  
+- **Severe class imbalance:** accuracy can look “okay” while missing fraud → prioritized recall + threshold tuning.
+- **Missing categorical data:** required careful cleaning and encoding. 
+- **False positives vs false negatives tradeoff:** improved fraud capture by lowering the probability threshold to 0.20. 
 
 ---
 
@@ -99,7 +99,7 @@ Feature importance analysis (XGBoost) emphasized:
 A model like this can help:
 - **Reduce financial losses** by catching more fraud earlier
 - Improve real-time monitoring using **behavior + device + transaction-type** signals
-- Support fraud operations teams with actionable risk factors fileciteturn0file0L186-L198  
+- Support fraud operations teams with actionable risk factors 
 
 ---
 
@@ -159,4 +159,4 @@ jupyter notebook
 
 ## Credits
 
-Group members listed in the presentation. fileciteturn0file0L1-L5
+Group members listed in the presentation. 
