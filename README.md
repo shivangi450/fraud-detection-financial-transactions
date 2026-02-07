@@ -1,0 +1,162 @@
+# Fraud Detection in Financial Transactions
+
+A machine learning project to **predict fraudulent financial transactions** using behavioral, transactional, and device signals. The workflow covers EDA, preprocessing, feature engineering, model comparison, and threshold tuning for better fraud capture (high recall).
+
+> **Course/Group Project** — includes collaborative work and shared deliverables.
+
+---
+
+## Project goal
+
+Build and compare supervised ML models to classify transactions as:
+- **0** = Not Fraud  
+- **1** = Fraud
+
+The dataset is **highly imbalanced** (fraud is rare), so the primary focus is on **Recall**, **F1-score**, and **ROC–AUC**, not just overall accuracy. fileciteturn0file0L1-L16
+
+---
+
+## What’s inside
+
+- **Notebook (end-to-end pipeline):** `notebooks/Fraud_Detection_Group6.ipynb`
+- **Dataset:** `data/raw/fraud_detection_dataset.csv`
+- **Presentation deck:** `docs/Final_Fraud_Detection_Presentation.pptx`
+
+---
+
+## Dataset overview
+
+- **Total features:** 12  
+- **Target:** `Fraudulent` (0/1) fileciteturn0file0L6-L10  
+- Missing values appear mostly in **categorical fields** fileciteturn0file0L10-L12  
+- Key behavioral signals highlighted during EDA:
+  - `Hours_Since_Last_Transaction`
+  - `Number_of_Transactions_Last_24H`
+  - `Device_Used` fileciteturn0file0L12-L16  
+
+---
+
+## Work done
+
+### 1) Exploratory Data Analysis (EDA)
+We explored fraud behavior across:
+- **Transaction velocity** (e.g., spikes around ~6 transactions in last 24 hours) fileciteturn0file0L17-L33  
+- **Time-of-day patterns** (fraud blends into normal traffic) fileciteturn0file0L34-L51  
+- **Location patterns** (some cities show higher fraud rates) fileciteturn0file0L52-L75  
+- **Correlation** (low multicollinearity; features provide mostly independent signal) fileciteturn0file0L76-L90  
+
+### 2) Data cleaning & preprocessing
+- Checked missing values and datatypes
+- Standardized categorical formats fileciteturn0file0L91-L99  
+- One-hot encoded categorical variables (transaction type, device, payment method) fileciteturn0file0L99-L104  
+- Engineered: **`Hours_Since_Last_Transaction`**
+- Used **train/test split**
+- Addressed class imbalance mainly with **probability threshold tuning** instead of oversampling fileciteturn0file0L99-L105  
+
+### 3) Modeling
+Trained and evaluated:
+- Logistic Regression
+- Decision Tree
+- Random Forest
+- XGBoost fileciteturn0file0L106-L113  
+
+We tuned the decision threshold (0.50 → **0.20**) to improve fraud capture (recall). fileciteturn0file0L106-L114
+
+---
+
+## Results (from the notebook run)
+
+Using the tuned threshold (**0.20**), the best-performing model was **XGBoost** with:
+
+- **Recall:** N/A
+- **F1-score:** N/A
+- **ROC–AUC:** N/A
+
+(Exact numbers may vary slightly with random seed/split.)  
+The presentation also identifies XGBoost as the best overall option for imbalanced fraud detection. fileciteturn0file0L120-L144
+
+---
+
+## Explainability: top drivers
+
+Feature importance analysis (XGBoost) emphasized:
+- Risky **transaction types** (e.g., bank transfer / POS / online purchase)
+- **Device signals** (tablet/mobile/unknown)
+- **Behavioral timing** (hours since last transaction; transaction velocity) fileciteturn0file0L145-L170  
+
+---
+
+## Challenges
+
+- **Severe class imbalance:** accuracy can look “okay” while missing fraud → prioritized recall + threshold tuning. fileciteturn0file0L10-L16  
+- **Missing categorical data:** required careful cleaning and encoding. fileciteturn0file0L10-L12  
+- **False positives vs false negatives tradeoff:** improved fraud capture by lowering the probability threshold to 0.20. fileciteturn0file0L106-L114  
+
+---
+
+## Business impact
+
+A model like this can help:
+- **Reduce financial losses** by catching more fraud earlier
+- Improve real-time monitoring using **behavior + device + transaction-type** signals
+- Support fraud operations teams with actionable risk factors fileciteturn0file0L186-L198  
+
+---
+
+## Future considerations
+
+- Calibrate probabilities and set **cost-based thresholds** (fraud loss vs review cost)
+- Add richer behavioral features (rolling windows, merchant-level patterns)
+- Add explainability tooling (e.g., SHAP) for case-level reasoning
+- Evaluate fairness/risk across regions/devices and monitor drift
+- Package into an API + streaming scoring pipeline for real-time detection
+
+---
+
+## Repo structure
+
+```text
+fraud-detection-financial-transactions/
+├─ data/
+│  ├─ raw/                         # original dataset
+│  ├─ processed/                   # place processed exports here
+│  └─ README.md
+├─ notebooks/
+│  └─ Fraud_Detection_Group6.ipynb # full workflow (recommended)
+├─ docs/
+│  └─ Final_Fraud_Detection_Presentation.pptx
+├─ src/                            # starter scripts for productionization
+├─ results/
+│  ├─ figures/
+│  └─ metrics/
+├─ requirements.txt
+├─ environment.yml
+└─ README.md
+```
+
+---
+
+## How to run
+
+### Option A: pip
+```bash
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+jupyter notebook
+```
+
+Open: `notebooks/Fraud_Detection_Group6.ipynb`
+
+### Option B: conda
+```bash
+conda env create -f environment.yml
+conda activate fraud-detection
+jupyter notebook
+```
+
+---
+
+## Credits
+
+Group members listed in the presentation. fileciteturn0file0L1-L5
