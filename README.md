@@ -66,14 +66,16 @@ We tuned the decision threshold (0.50 → **0.20**) to improve fraud capture (re
 
 ## Results (from the notebook run)
 
-Using the tuned threshold (**0.20**), the best-performing model was **XGBoost** with:
+Results (from the notebook run)
 
-- **Recall:** N/A
-- **F1-score:** N/A
-- **ROC–AUC:** N/A
+Using the tuned threshold (0.20), the best-performing model was XGBoost with:
 
-(Exact numbers may vary slightly with random seed/split.)  
-The presentation also identifies XGBoost as the best overall option for imbalanced fraud detection. 
+Recall: 0.8759
+F1-score: 0.3279
+ROC–AUC: 0.8279
+Accuracy: 0.5318
+
+XGBoost provided the best balance between fraud detection capability (high recall) and overall discrimination (ROC–AUC), making it the most suitable model for this imbalanced fraud detection problem.
 
 ---
 
