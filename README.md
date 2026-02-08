@@ -121,14 +121,14 @@ A model like this can help:
 ```text
 fraud-detection-financial-transactions/
 ├─ data/
-│  ├─ raw/                         # original dataset
-│  ├─ processed/                   # place processed exports here
+│  ├─ raw/                         
+│  ├─ processed/               
 │  └─ README.md
 ├─ notebooks/
-│  └─ Fraud_Detection_Group6.ipynb # full workflow (recommended)
+│  └─ Fraud_Detection_Group6.ipynb 
 ├─ docs/
 │  └─ Final_Fraud_Detection_Presentation.pptx
-├─ src/                            # starter scripts for productionization
+├─ src/                          
 ├─ results/
 │  ├─ figures/
 │  └─ metrics/
